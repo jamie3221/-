@@ -1,98 +1,168 @@
-<!-- resources/views/welcome.blade.php -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Housecare Connect</title>
-    <!-- Link your custom CSS file for styling -->
     <style>
-        /* styles.css */
+        body {
+            background-color: #8e9eab;
+            background-image: radial-gradient(circle, #ff8a00, #e52d27, #5f72be, #00b5c0, #00b5c0);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s linear infinite;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
 
-body {
-    background-color: #8e9eab;
-    background-image: radial-gradient(circle, #ff8a00, #e52d27, #5f72be, #00b5c0, #00b5c0);
-    background-size: 400% 400%;
-    animation: gradientAnimation 15s linear infinite;
-    min-height: 100vh;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Roboto', Arial, sans-serif; /* Use a more fitting font */
-}
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
 
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-    100% {
-        background-position: 100% 50%;
-    }
-}
+        .container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-.container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+        .login-box {
+            width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-.welcome-container {
-    text-align: center;
-    padding-top: 20%;
-    color: #fff;
-}
+        .login-switch {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
 
-.buttons {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-}
+        .switch-btn {
+            padding: 10px 20px;
+            background-color: #00b5c0;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-.btn {
-    display: inline-block;
-    padding: 15px 30px; /* Increased button padding */
-    margin: 0 10px;
-    background-color: #4e54c8;
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.2rem; /* Increased font size */
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-}
+        .switch-btn.active {
+            background-color: #5f72be;
+        }
 
-.btn:hover {
-    background-color: #8f94fb;
-    color: #fff;
-}
+        .login-form {
+            display: none;
+        }
 
-.btn:active {
-    background-color: #bdc4ff;
-}
+        .login-form.active {
+            display: block;
+        }
 
-.container h1 {
-    font-size: 3rem; /* Increased heading font size */
-    color: #333;
-}
+        .login-form h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
 
-.container p {
-    font-size: 1.4rem; /* Increased paragraph font size */
-    line-height: 1.6;
-    color: #666;
-}
+        .login-form form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
+        .login-form input[type="email"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            background-color: #00b5c0;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #5f72be;
+        }
+
+        .btn:active {
+            background-color: #8f94fb;
+        }
+
+        .register-link {
+            margin-top: 20px;
+            text-align: center;
+            color: #666;
+        }
+
+        .register-link a {
+            color: #00b5c0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .register-link a:hover {
+            color: #5f72be;
+        }
+
+        .admin-login-link {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            text-align: center;
+            color: #666;
+        }
+
+        .admin-login-link a {
+            color: #00b5c0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .admin-login-link a:hover {
+            color: #5f72be;
+        }
     </style>
 </head>
 <body>
+
+<div class="container">
     <div class="welcome-container">
-        <h1>WELCOME TO HOUSECARE CONNECT</h1>
+        <h1>Welcome to Housecare Connect</h1>
         <div class="buttons">
-            <a href="{{ route('login') }}" class="btn">Login</a>
-            <a href="{{ route('register') }}" class="btn">Register</a>
+            <a href="{{ route('customer.login') }}" class="btn">Login as Customer</a>
+            <a href="{{ route('serviceprovider.login') }}" class="btn">Login as Service Provider</a>
+        </div>
+        <div class="register-link">
+            <p>Don't have an account? <a href="{{ route('register') }}">Register for free!</a></p>
         </div>
     </div>
+</div>
+
+<div class="admin-login-link">
+    <p>Admin? <a href="{{ route('admin.login') }}">Admin Login</a></p>
+</div>
+
 </body>
 </html>

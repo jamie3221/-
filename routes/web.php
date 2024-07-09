@@ -1,16 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\CustomerLoginController;
+use App\Http\Controllers\Auth\ServiceProviderLoginController;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+// Customer Login Routes
+Route::get('/customer/login', [CustomerLoginController::class, 'showLoginForm'])->name('customer.login');
+Route::post('/customer/login', [CustomerLoginController::class, 'login'])->name('customer.login.submit');
 
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [RegisterController::class, 'register']);
+// Service Provider Login Routes
+Route::get('/serviceprovider/login', [ServiceProviderLoginController::class, 'showLoginForm'])->name('serviceprovider.login');
+Route::post('/serviceprovider/login', [ServiceProviderLoginController::class, 'login'])->name('serviceprovider.login.submit');
+
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
+
+Route::get('/admin/login', [\App\Http\Controllers\Auth\AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [\App\Http\Controllers\Auth\AdminLoginController::class, 'login'])->name('admin.login.submit');
