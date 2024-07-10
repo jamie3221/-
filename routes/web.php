@@ -1,24 +1,40 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\CustomerLoginController;
-use App\Http\Controllers\Auth\ServiceProviderLoginController;
+use App\Http\Controllers\Auth\CustomerRegisterController;
+use App\Http\Controllers\Auth\ProviderLoginController;
+use App\Http\Controllers\Auth\ProviderRegisterController;
+use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\Route;
 
+// Welcome Page
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+})->name('welcome');
 
-// Customer Login Routes
+// Customer Routes
 Route::get('/customer/login', [CustomerLoginController::class, 'showLoginForm'])->name('customer.login');
 Route::post('/customer/login', [CustomerLoginController::class, 'login'])->name('customer.login.submit');
+Route::get('/customer/register', [CustomerRegisterController::class, 'showRegistrationForm'])->name('customer.register');
+Route::post('/customer/register', [CustomerRegisterController::class, 'register'])->name('customer.register.submit');
 
-// Service Provider Login Routes
-Route::get('/serviceprovider/login', [ServiceProviderLoginController::class, 'showLoginForm'])->name('serviceprovider.login');
-Route::post('/serviceprovider/login', [ServiceProviderLoginController::class, 'login'])->name('serviceprovider.login.submit');
+// Service Provider Routes
+Route::get('/provider/login', [ProviderLoginController::class, 'showLoginForm'])->name('serviceprovider.login');
+Route::post('/provider/login', [ProviderLoginController::class, 'login'])->name('serviceprovider.login.submit');
+Route::get('/provider/register', [ProviderRegisterController::class, 'showRegistrationForm'])->name('serviceprovider.register');
+Route::post('/provider/register', [ProviderRegisterController::class, 'register'])->name('serviceprovider.register.submit');
 
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
+// Admin Routes
+Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AdminLoginController::class, 'login'])->name('admin.login.submit');
 
-Route::get('/admin/login', [\App\Http\Controllers\Auth\AdminLoginController::class, 'showLoginForm'])->name('admin.login');
-Route::post('/admin/login', [\App\Http\Controllers\Auth\AdminLoginController::class, 'login'])->name('admin.login.submit');
+// Dashboard Routes (adjust as needed)
+Route::get('/customer/dashboard', [DashboardController::class, 'customerDashboard'])->name('customer.dashboard');
+Route::get('/provider/dashboard', [DashboardController::class, 'providerDashboard'])->name('provider.dashboard');
+
+// Logout Route (adjust as needed)
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+
+// Additional routes can be added as per your application's requirements
+

@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class ServiceProviderLoginController extends Controller
+class ProviderLoginController extends Controller
 {
     public function showLoginForm()
     {
-        return view('auth.login', ['url' => 'serviceprovider']);
+        return view('auth.login', ['url' => 'provider']);
     }
 
     public function login(Request $request)
@@ -25,9 +25,8 @@ class ServiceProviderLoginController extends Controller
             return redirect()->back()->withErrors($validator)->withInput($request->only('email'));
         }
 
-        if (Auth::guard('serviceprovider')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            // Authentication passed...
-            return redirect()->intended('/Dashboards/serviceprovider_dash');
+        if (Auth::guard('provider')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect()->intended('/provider/dashboard');
         }
 
         return redirect()->back()->withInput($request->only('email'));

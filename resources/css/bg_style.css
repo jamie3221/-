@@ -1,8 +1,8 @@
 body {
     background-color: #8e9eab;
-    background-image: linear-gradient(135deg, #8e9eab, #eef2f3, #a6c0fe);
+    background-image: radial-gradient(circle, #ff8a00, #e52d27, #5f72be, #00b5c0, #00b5c0);
     background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
+    animation: gradientAnimation 15s linear infinite;
     min-height: 100vh;
     margin: 0;
     display: flex;
@@ -15,20 +15,65 @@ body {
     0% {
         background-position: 0% 50%;
     }
-    50% {
-        background-position: 100% 50%;
-    }
     100% {
-        background-position: 0% 50%;
+        background-position: 100% 50%;
     }
 }
 
 .container {
-    width: 80%;
-    max-width: 800px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.welcome-container {
     text-align: center;
+    padding-top: 20%;
+    color: #fff;
+}
+
+.buttons {
+    margin-top: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 0 10px;
+    background-color: #fff;
+    color: #4e54c8;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn:hover {
+    background-color: #8f94fb;
+    color: #fff;
+}
+
+.btn:active {
+    background-color: #bbb;
+    color: #fff;
+}
+
+.admin-login-link {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    text-align: center;
+    color: #666;
+}
+
+.admin-login-link a {
+    color: #00b5c0;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.admin-login-link a:hover {
+    color: #5f72be;
 }

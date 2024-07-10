@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Housecare Connect</title>
+    <!-- Include CSS styles -->
     <style>
-        body {
+          body {
             background-color: #8e9eab;
             background-image: radial-gradient(circle, #ff8a00, #e52d27, #5f72be, #00b5c0, #00b5c0);
             background-size: 400% 400%;
@@ -143,25 +144,24 @@
         .admin-login-link a:hover {
             color: #5f72be;
         }
+
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="welcome-container">
-        <h1>Welcome to Housecare Connect</h1>
+        <h1>WELCOME TO HOUSECARE CONNECT</h1>
         <div class="buttons">
-            <a href="{{ route('customer.login') }}" class="btn">Login as Customer</a>
+            <a href="{{ route('login') }}" class="btn">Login as Customer</a>
+            <a href="{{ route('customer.register') }}" class="btn">Register as Customer</a>
             <a href="{{ route('serviceprovider.login') }}" class="btn">Login as Service Provider</a>
+            <a href="{{ route('serviceprovider.register') }}" class="btn">Register as Service Provider</a>
         </div>
-        <div class="register-link">
-            <p>Don't have an account? <a href="{{ route('register') }}">Register for free!</a></p>
+        <div class="admin-link">
+            <p><a href="{{ route('admin.login') }}">Admin Login</a></p>
         </div>
     </div>
-</div>
-
-<div class="admin-login-link">
-    <p>Admin? <a href="{{ route('admin.login') }}">Admin Login</a></p>
 </div>
 
 </body>

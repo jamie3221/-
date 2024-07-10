@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Housecare Connect</title>
+    <title>Register</title>
     <style>
         body {
             background-color: #8e9eab;
@@ -35,7 +35,7 @@
             height: 100vh;
         }
 
-        .register-box {
+        .login-box {
             width: 400px;
             background-color: #fff;
             padding: 20px;
@@ -43,21 +43,48 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .register-form {
+        .login-switch {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
         }
 
-        .register-form h2 {
+        .switch-btn {
+            padding: 10px 20px;
+            background-color: #00b5c0;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .switch-btn.active {
+            background-color: #5f72be;
+        }
+
+        .login-form {
+            display: none;
+        }
+
+        .login-form.active {
+            display: block;
+        }
+
+        .login-form h2 {
             font-size: 1.8rem;
             margin-bottom: 10px;
             color: #333;
         }
 
-        .register-form input[type="text"],
-        .register-form input[type="email"],
-        .register-form input[type="password"] {
+        .login-form form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-form input[type="email"],
+        .login-form input[type="password"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
@@ -83,19 +110,37 @@
             background-color: #8f94fb;
         }
 
-        .login-link {
+        .register-link {
             margin-top: 20px;
             text-align: center;
             color: #666;
         }
 
-        .login-link a {
+        .register-link a {
             color: #00b5c0;
             text-decoration: none;
             transition: color 0.3s;
         }
 
-        .login-link a:hover {
+        .register-link a:hover {
+            color: #5f72be;
+        }
+
+        .admin-login-link {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            text-align: center;
+            color: #666;
+        }
+
+        .admin-login-link a {
+            color: #00b5c0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .admin-login-link a:hover {
             color: #5f72be;
         }
     </style>
@@ -104,19 +149,15 @@
 
 <div class="container">
     <div class="register-box">
-        <div class="register-form">
-            <h2>Register for Housecare Connect</h2>
-            <form action="{{ route('register.submit') }}" method="POST">
-                @csrf
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <input type="password" name="password" placeholder="Your Password" required>
-                <button type="submit" class="btn">Register</button>
-            </form>
-        </div>
-        <div class="login-link">
-            <p>Already have an account? <a href="{{ route('login') }}">Login</a></p>
-        </div>
+        <h2>Register</h2>
+        <form action="{{ route('customer.register.submit') }}" method="POST">
+            @csrf
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="password" name="password" placeholder="Your Password" required>
+            <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
+            <button type="submit" class="btn">Register</button>
+        </form>
     </div>
 </div>
 
